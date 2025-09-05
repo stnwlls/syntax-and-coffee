@@ -3,7 +3,7 @@ name: Deploy Syntax & Coffee Theme to IONOS (SFTP)
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch: {}
+  workflow_dispatch: {} 
 
 jobs:
   deploy:
@@ -12,20 +12,14 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: SFTP deploy theme
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: SFTP Deploy (theme only)
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.IONOS_HOST }}
           username: ${{ secrets.IONOS_USER }}
           password: ${{ secrets.IONOS_PASS }}
-          protocol: sftp
           port: 22
-          local-dir: ./themes/syntax-and-coffee
-          server-dir: /themes/syntax-and-coffee/
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.github/**
-            **/*.log
-            **/.DS_Store
-            **/node_modules/**
+          local_path: ./themes/syntax-and-coffee
+          remote_path: /themes/syntax-and-coffee
+          sftp_only: true
+          exclude: ".git,.github,.DS_Store,*.log,node_modules"
