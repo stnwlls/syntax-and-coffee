@@ -1,0 +1,21 @@
+# editor / os
+.vscode/
+.DS_Store
+*.log
+node_modules/
+vendor/
+
+# heavy/generated
+uploads/
+cache/
+upgrade/
+ai1wm-backups/
+backups/
+
+# track only your theme (ignore others by default)
+themes/*/
+!themes/syntax-and-coffee/**
+
+# (optional) allow custom plugins later:
+#plugins/*/
+#!plugins/your-plugin-slug/**
